@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>Display Data</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>10 News for You</h1>
+    <!-- Refresh button form -->
+    <form action="" method="get">
+        <button type="submit">Refresh</button>
+    </form>
+    <!-- Data table -->
+    {% for table in tables %}
+        {{ table|safe }}
+    {% endfor %}
+</body>
+</html>
