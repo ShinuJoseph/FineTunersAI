@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>News Content</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-image: url("{{ url_for('static', filename='background.jpeg') }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: black; /* Updated to white */
+        }
+
+        p {
+            font-size: 24px;
+            color: black; /* Updated to white */
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='SunshineScoop_Logo.jpeg') }}" alt="Sunshine Scoop Logo" class="logo">
+    <h1>{{ title }}</h1>
+    <p>{{ content }}</p>
+</body>
+</html>

@@ -1,27 +1,78 @@
 <!doctype html>
 <html>
 <head>
-    <title>Display Data</title>
+    <title>News Titles</title>
     <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url("{{ url_for('static', filename='background.jpeg') }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        th, td {
-            padding: 5px;
-            text-align: left;
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            color: #333; /* or any color you want */
+            margin-top: 20px;
+        }
+
+        .news-list {
+            width: 80%;
+            max-width: 1200px; /* or your preferred max-width */
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .news-item {
+            font-size: 24px;
+            border-bottom: 1px solid #ccc; /* or any color you want */
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .news-item:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.05); /* subtle stripe for odd items */
+        }
+
+        .news-item img {
+            width: 100px; /* placeholder width */
+            height: 100px; /* placeholder height */
+            background-color: #ddd; /* placeholder color */
+            margin-right: 20px;
+            display: inline-block;
+        }
+
+        .news-item a {
+            color: #007bff; /* or any color you want */
+            text-decoration: none;
+            display: block;
+            flex-grow: 1;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>10 News for You</h1>
-    <!-- Refresh button form -->
-    <form action="" method="get">
-        <button type="submit">Refresh</button>
-    </form>
-    <!-- Data table -->
-    {% for table in tables %}
-        {{ table|safe }}
-    {% endfor %}
+    <h1>News Titles</h1>
+    <div class="news-list">
+        <ul>
+            {% for title in titles %}
+                <li class="news-item">
+                    <div class="image-placeholder"></div>
+                    <a href="{{ url_for('show_content', title=title) }}">{{ title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

@@ -1,34 +1,36 @@
-from flask import Flask, render_template    
-import pandas as pd                         
-app = Flask(__name__)                
+from flask import Flask, render_template, request
+import pandas as pd
 
-@app.route('/')               
-def index():                  
-    # HTML to render the initial page with the Refresh button
-    return '''
-    <!doctype html>
-    <html>
-    <head><title>CSV Data Display</title></head>
-    <body>
-        <h1>10 News for You</h1>
-        <form action="/publish" method="get">
-            <button type="submit">Refresh</button>
-        </form>
-    </body>
-    </html>
-    '''
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/publish')
 def publish_data():
-    # Correct path for your CSV file location
-    file_path = '../../flask_csv_project/output.csv'
+    file_path = '/../../data/output_R1.csv'
     try:
         data_frame = pd.read_csv(file_path)
-        sample_data = data_frame.sample(10)  # Select 10 random rows
-        # Pass the sampled data to the display.html template
-        return render_template('display.html', tables=[sample_data.to_html(classes='data', header="true")], titles=sample_data.columns.values)
+
+        # Assuming the second column is 'title'
+        sample_titles = data_frame.iloc[:, 1].sample(10)
+        return render_template('display.html', titles=sample_titles)
     except Exception as e:
-        # If there's an error, print it to the console and show it on the webpage
+        print(e)
+        return f"An error occurred: {e}"
+
+@app.route('/content')
+def show_content():
+    title = request.args.get('title')
+    file_path = '/../../data/output_R1.csv'
+    try:
+        data_frame = pd.read_csv(file_path)
+        
+        # Find the content for the given title
+        content = data_frame[data_frame.iloc[:, 1] == title].iloc[0, 2]
+        return render_template('content.html', title=title, content=content)
+    except Exception as e:
         print(e)
         return f"An error occurred: {e}"
 

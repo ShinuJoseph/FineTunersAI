@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <title>CSV Data Display</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url("{{ url_for('static', filename='background.jpeg') }}");
+            /* Full height */
+            height: 100%; 
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 48px; /* Larger font size for the title */
+        }
+        button {
+    font-size: 24px; /* Larger font size for the button */
+    padding: 10px 20px; /* Larger clickable area */
+    cursor: pointer; /* Changes the cursor to indicate a clickable button */
+    color: black; /* Text color set to white */
+    background-color: #007bff; /* Example background color; change as needed */
+    border: none; /* Removes the default border */
+    border-radius: 4px; /* Optional: adds rounded corners */
+}
+
+    
+    </style>
+</head>
+<body class="bg">
+    <h1>10 News for You</h1>
+    <form action="/publish" method="get">
+        <button type="submit">Show</button>
+    </form>
+</body>
+</html>

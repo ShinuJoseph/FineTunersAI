@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ type }} News</title>
+    <style>
+        /* Add the styles from your display.html or similar */
+    </style>
+</head>
+<body>
+    <h1>{{ type }} News Titles</h1>
+    <div class="news-list">
+        <ul>
+            {% for title in titles %}
+                <li class="news-item">
+                    <a href="{{ url_for('show_content', title=title) }}">{{ title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
